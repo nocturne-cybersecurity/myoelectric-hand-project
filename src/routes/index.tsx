@@ -1,24 +1,17 @@
-import { createFileRoute } from "@tanstack/react-router";
+import { createFileRoute, Link } from '@tanstack/react-router';
+import { ArrowRight, MoveUpRight, Box, Activity, Cpu, Wrench, Code2 } from 'lucide-react';
+import { Button } from '@/components/ui/button';
+import { ProcessGallery } from '@/components/process-gallery';
+import { pageHead } from '@/lib/project-data';
+import hero from '@/assets/protesis.jpg';
 
-// No head() here: the home route inherits title/description/og/twitter from
-// __root.tsx, and ships no og:image so serve-time hosting can inject the
-// project's social preview (explicit og:image or latest screenshot).
-export const Route = createFileRoute("/")({
-  component: Index,
-});
+export const Route = createFileRoute('/')({head:()=>pageHead('Prótesis mioeléctrica de bajo costo — CUGDL','Proyecto universitario de una mano y brazo impresos en 3D, con detección EMG y movimiento de dedos. Conoce su diseño, materiales y proceso.'),component:Index});
 
-// IMPORTANT: Replace this placeholder. See ./README.md for routing conventions.
 function Index() {
-  return (
-    <div
-      className="flex min-h-screen items-center justify-center"
-      style={{ backgroundColor: "#fcfbf8" }}
-    >
-      <img
-        data-lovable-blank-page-placeholder="REMOVE_THIS"
-        src="https://cdn.gpteng.co/blank-app-v1.svg"
-        alt="Your app will live here!"
-      />
-    </div>
-  );
+return <main><section className="hero"><img className="hero-photo" src={hero} width={1536} height={1024} alt="Referencia de una mano y antebrazo protésicos impresos en 3D"/><div className="hero-shade"/><div className="hero-content"><div className="hero-eyebrow"><span/> TECNOLOGÍA QUE CONECTA CON LA VIDA</div><h1>Prótesis mioeléctrica<br/><span>de bajo costo.</span></h1><p>Una señal muscular. Un nuevo movimiento.<br/>Ingeniería e impresión 3D al servicio de las personas.</p><Button asChild className="hero-cta" size="lg"><Link to="/proceso">Conoce el proceso <ArrowRight/></Link></Button></div><div className="hero-footer"><span>Centro Universitario de Guadalajara</span><span>DISEÑO · TECNOLOGÍA · IMPACTO</span></div></section>
+<section className="facts"><div><Box/><span><strong>Impresión 3D</strong><small>Diseño y fabricación en PLA</small></span></div><div><Activity/><span><strong>Control mioeléctrico</strong><small>Movimiento a partir de señal EMG</small></span></div><div><Cpu/><span><strong>5 servomotores</strong><small>Control del movimiento de los dedos</small></span></div><div><MoveUpRight/><span><strong>Bajo costo</strong><small>Componentes accesibles</small></span></div></section>
+<section className="section objective"><div><span className="eyebrow">01 / EL OBJETIVO</span><h2>Transformar una señal<br/>en posibilidades.</h2></div><div><p className="lead">Desarrollar una mano y un brazo funcionales, impresos en 3D, para personas con amputación transradial.</p><p className="body-copy">La prótesis detecta la contracción muscular mediante una señal EMG y la convierte en movimiento: cierre de pinza y articulación de los dedos. Un proyecto que reúne distintas disciplinas con un mismo propósito.</p><div className="objective-tags"><span>Amputación transradial</span><span>Agarre de pinza</span><span>Movimiento de dedos</span></div></div></section>
+<section className="technology section"><div className="section-heading"><div><span className="eyebrow">02 / EL DESARROLLO</span><h2>De la idea al movimiento.</h2></div><span className="section-note">Tres sistemas. Una solución.</span></div><div className="tech-grid"><article><Code2/><h3>Software y diseño</h3><p>Diseño paramétrico desarrollado en Blender. Laminado en UltiMaker Cura y programación del control en Arduino IDE.</p><div className="tech-detail"><span>Super Quality</span><strong>0.12 mm</strong><span>Boquilla · PLA</span><strong>0.4 mm</strong></div></article><article><Wrench/><h3>Mecánica</h3><p>Palma CC810 y 15 falanges articuladas. Hilo de nylon y tornillos M3 unen las piezas; los tendones transmiten el movimiento.</p><div className="tech-detail"><span>Estructura</span><strong>PLA impreso en 3D</strong><span>Articulación</span><strong>15 falanges</strong></div></article><article><Cpu/><h3>Electrónica</h3><p>Sensor EMG AD8232, Arduino Nano y cinco servos MG90S/MG996R. Controlador de servomotores PCA, regulador y cableado.</p><div className="tech-detail"><span>Alimentación</span><strong>Batería de 9 V</strong><span>Control</span><strong>Señal muscular EMG</strong></div></article></div><p className="technical-note">Prototipo académico. La adquisición EMG con AD8232 y la alimentación de los servos requieren validación técnica; no es un dispositivo médico certificado.</p></section>
+<section className="section process-preview"><div><span className="eyebrow">03 / EN CONSTRUCCIÓN</span><h2>Cada pieza cuenta<br/>una parte del proceso.</h2><p className="body-copy">De la impresión de las primeras falanges al ajuste de los tendones. Así toma forma una idea que busca recuperar el movimiento.</p><Button asChild variant="outline" className="mt-7"><Link to="/proceso">Explorar el proceso <ArrowRight/></Link></Button><span className="image-disclaimer">Imágenes ilustrativas del desarrollo.</span></div><ProcessGallery/></section>
+<section className="team-band"><div><span className="eyebrow">04 / EL EQUIPO</span><h2>Distintas disciplinas.<br/>Un propósito compartido.</h2></div><Button asChild variant="outline"><Link to="/equipo">Conoce a los integrantes <ArrowRight/></Link></Button></section></main>;
 }

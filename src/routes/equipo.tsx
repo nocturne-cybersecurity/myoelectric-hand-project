@@ -1,0 +1,6 @@
+import { createFileRoute } from '@tanstack/react-router';
+import { pageHead,members } from '@/lib/project-data';
+import { GraduationCap, ArrowUpRight } from 'lucide-react';
+
+export const Route = createFileRoute('/equipo')({head:()=>pageHead('Equipo multidisciplinario — Prótesis CUGDL','Conoce a los cinco integrantes de Biomédica, Creatividad Digital, Ciberseguridad y Finanzas del proyecto de prótesis mioeléctrica del CUGDL.'),component:TeamPage});
+function TeamPage(){return <main><section className="page-intro section"><span className="eyebrow">INGENIERÍA CON PROPÓSITO</span><h1>El equipo.</h1><p className="lead">Cinco integrantes. Cuatro disciplinas.<br/>Una misma idea: hacer la tecnología más accesible.</p></section><section className="section member-grid">{members.map(([name,degree,initials],index)=><article className="member" key={name}><div className="member-top"><span className="member-number">0{index+1}</span><ArrowUpRight size={20}/></div><div className="member-initials">{initials}</div><h2>{name}</h2><p><GraduationCap size={17}/>{degree}</p></article>)}</section><section className="university-band section"><GraduationCap size={38}/><div><span className="eyebrow">CUGDL</span><h2>Centro Universitario de Guadalajara</h2><p>Proyecto académico · Prótesis mioeléctrica de bajo costo</p></div></section></main>}
