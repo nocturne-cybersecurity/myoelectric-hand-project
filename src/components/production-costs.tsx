@@ -41,6 +41,7 @@ export function ProductionCosts() {
   const [tab, setTab] = useState(0);
   const reduced = useReducedMotion();
   const category = categories[tab];
+  if (!category) return null;
   return <section className="costs-v2" aria-labelledby="cost-heading">
     <div className="section cost-intro"><div><span className="eyebrow">03 / COSTOS DE PRODUCCIÓN</span><h2 id="cost-heading">Accesibilidad que<br/>también se mide.</h2></div><p>Ingeniería de bajo costo.<br/><span>Una inversión en posibilidades.</span></p></div>
     <div className="cost-highlight"><div className="cost-highlight-inner">
