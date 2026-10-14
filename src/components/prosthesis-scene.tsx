@@ -93,9 +93,9 @@ function Studio({ palette }: { palette: Palette }) {
 }
 
 class SceneBoundary extends Component<{ children: ReactNode }, { failed: boolean }> {
-  state = { failed: false };
+  override state = { failed: false };
   static getDerivedStateFromError() { return { failed: true }; }
-  render() { return this.state.failed ? <div className="prototype-loading">La vista 3D no está disponible en este dispositivo.</div> : this.props.children; }
+  override render() { return this.state.failed ? <div className="prototype-loading">La vista 3D no está disponible en este dispositivo.</div> : this.props.children; }
 }
 
 export default function ProsthesisScene() {
