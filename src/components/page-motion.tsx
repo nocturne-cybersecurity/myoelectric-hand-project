@@ -14,7 +14,7 @@ export function PageMotion() {
         observer.unobserve(entry.target);
       });
     }, { threshold: 0.12 });
-    document.querySelectorAll('main > section:not(.hero), .cost-breakdown').forEach(section => observer.observe(section));
+    document.querySelectorAll('main > section:not(.hero):not(.costs-v2):not(.prototype-section), .cost-intro, .cost-price, .cost-capacity, .cost-ledger, .equipment-investment').forEach(section => observer.observe(section));
     return () => { observer.disconnect(); animations.forEach(animation => animation.cancel()); };
   }, []);
   return null;

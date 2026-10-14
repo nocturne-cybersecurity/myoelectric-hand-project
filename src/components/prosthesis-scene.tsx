@@ -48,13 +48,14 @@ function Hinge({ palette, width = .45 }: { palette: Palette; width?: number }) {
 }
 
 function Finger({ palette, length, curl, thumb = false }: { palette: Palette; length: number; curl: number; thumb?: boolean }) {
+  const reduced = useReducedMotion();
   const base = useRef<THREE.Group>(null);
   const middle = useRef<THREE.Group>(null);
   const tip = useRef<THREE.Group>(null);
   const geometry = useMemo(() => plateGeometry(thumb ? .44 : .36, length, .28), [length, thumb]);
   useEffect(() => () => geometry.dispose(), [geometry]);
   useFrame((_, rawDelta) => {
-    const blend = 1 - Math.exp(-8 * Math.min(rawDelta, .05));
+    const blend = reduced ? 1 : 1 - Math.exp(-8 * Math.min(rawDelta, .05));
     [base, middle, tip].forEach((ref, i) => {
       if (ref.current) ref.current.rotation.x = THREE.MathUtils.lerp(ref.current.rotation.x, curl * (i === 0 ? .85 : 1.1), blend);
     });
